@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from "@angular/common/http";
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -9,6 +10,7 @@ import { ContactComponent } from './contact.component';
 import { TermsComponent } from './terms.component';
 import { NotfoundComponent } from './notfound.component';
 import { NavMainComponent } from './nav-main.component';
+import { AddNewComponent } from './add-new.component';
 
 
 @NgModule({
@@ -18,12 +20,15 @@ import { NavMainComponent } from './nav-main.component';
     AboutComponent,
     ContactComponent,
     TermsComponent,
+    AddNewComponent,
     NotfoundComponent,
-    NavMainComponent,
+    NavMainComponent
+
 
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],
