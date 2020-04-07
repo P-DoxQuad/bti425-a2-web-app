@@ -1,33 +1,35 @@
-<div id="terms">
-  <thead>
-    <tr>
-      <th>Word</th>
-      <th>Author</th>
-      <th>Definition</th>
-      <th>Field of Study</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>a Word</td>
-      <td>Sombody New</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere tempor enim at dapibus. Vestibulum
-        ullamcorper lectus ut eros tempor feugiat. Vivamus vulputate felis quis dui rutrum consequat. Praesent eu auctor
-        neque. Sed dignissim erat nulla, tincidunt pretium ante commodo nec. Donec pulvinar ipsum magna, sed volutpat
-        turpis pulvinar quis. Fusce commodo molestie libero, condimentum fermentum sapien lacinia quis.</td>
-      <td>Software Development</td>
-      <td><input type="submit" value="Detail" /></td>
-    </tr>
-    <tr>
-      <td>Another Word</td>
-      <td>Sombody Else</td>
-      <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur posuere tempor enim at dapibus. Vestibulum
-        ullamcorper lectus ut eros tempor feugiat. Vivamus vulputate felis quis dui rutrum consequat. Praesent eu auctor
-        neque. Sed dignissim erat nulla, tincidunt pretium ante commodo nec. Donec pulvinar ipsum magna, sed volutpat
-        turpis pulvinar quis. Fusce commodo molestie libero, condimentum fermentum sapien lacinia quis. </td>
-      <td>Software Development</td>
-      <td><input type="submit" value="Detail" /></td>
-    </tr>
-  </tbody>
+<div>
+  <h3>List of Terms:</h3>
 </div>
+<div id="terms">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Word</th>
+        <th>Author</th>
+        <th>Definition</th>
+        <th>Field of Study</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of terms">
+        <td>{{ p.wordEnglish }}</td>
+        <td>{{ p.authorName }}</td>
+        <td>{{ p.definitions.definition }}</td>
+        <td>{{ p.fieldOfStudy }}</td>
+        <td><input type="submit" value="Detail" /></td>
+      </tr>
+    </tbody>
+
+    <!-- <tbody>
+      <tr *ngFor="let p of terms">
+        <td>{{ p.id }}</td>
+        <td>{{ p.userId }}</td>
+        <td>{{ p.title }}</td>
+        <td>{{ p.body }}</td>
+      </tr>
+    </tbody> -->
+  </table>
+</div>
+
