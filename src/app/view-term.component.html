@@ -1,0 +1,56 @@
+<h3>terms[0] Details</h3>
+<p>&nbsp;</p>
+
+{{terms[0]._id}}
+
+<div class="row" *ngIf="terms">
+<!-- <div class="row"> -->
+  <div class="col-md-6 col-sm-6">
+    <dl class="dl-horizontal">
+      <dt>Author:</dt>
+      <dd>{{ terms[0].authorName}}</dd>
+      <dt>Date Created:</dt>
+      <dd>{{ terms[0].dateCreated }}</dd>
+      <dt>Date Revised:</dt>
+      <dd>{{ terms[0].dateRevised }}</dd>
+      <br />
+      <dt>Word:</dt>
+      <dd>{{ terms[0].wordEnglish}}</dd>
+      <dt>NonEnglish:</dt>
+      <dd>{{ terms[0].wordNonEnglish }}</dd>
+      <dt>Expanded:</dt>
+      <dd>{{ terms[0].wordExpanded }}</dd>
+      <dt>Language:</dt>
+      <dd>{{ terms[0].languageCode}}</dd>
+      <dt>Audio:</dt>
+      <dd>{{ terms[0].audio }}</dd>
+      <dt>Direct URL:</dt>
+      <dd>{{ terms[0].linkAuthoritative }}</dd>
+      <dt>Wikipedia:</dt>
+      <dd>{{ terms[0].linkWikipedia}}</dd>
+      <dt>YouTube:</dt>
+      <dd>{{ terms[0].linkYouTube }}</dd>
+      <dt>Definition:</dt>
+      <dd>{{ terms[0].definitions }}</dd>
+    </dl>
+  </div>
+
+  <!-- <div class="col-md-2 col-sm-4" *ngIf="terms[0].image">
+    <img [src]="terms[0].image" alt="" class="img-rounded img-responsive">
+  </div> -->
+  <div class="col-md-2 col-sm-4" >
+    <img src="https://via.placeholder.com/800" alt="" class="img-rounded img-responsive">
+  </div>
+
+</div>
+<!-- <div *ngIf="terms[0]"> -->
+<div>
+  <hr>
+  <a routerLink="/users/edit/{{ terms[0]._id }}" class="btn btn-warning">Edit</a>&nbsp;
+  <a routerLink="/terms" class="btn btn-default">Back to list</a>
+</div>
+
+<div *ngIf="!terms">
+  <p>Requested tem was not found</p>
+  <p><a routerLink="/terms" class="btn btn-default">Back to list</a></p>
+</div>

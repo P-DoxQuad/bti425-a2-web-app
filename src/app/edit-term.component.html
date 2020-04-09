@@ -1,0 +1,169 @@
+<div class="containter">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Add a new term</h3>
+      <p>Enter data, and click/tap the Save button</p>
+      <form (ngSubmit)='EditTerm()' #f='ngForm'>
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label" for="englishword">English Word:</label>
+          <input class="form-control" id="englishword" name="englishword" [(ngModel)]="newTerm.wordEnglish" required minlength="3"
+            maxlength="100" #name="ngModel" autofocus>
+
+          <!-- Validation error area -->
+          <!-- Single condition... -->
+          <!-- <div [hidden]="name.valid || name.pristine" class='alert alert-danger'> -->
+          <!-- Multiple conditions... -->
+          <div *ngIf='name.invalid && (name.dirty || name.touched)' class='alert alert-danger'>
+            <!-- The code below is situation-dependent - think before coding -->
+            <div *ngIf='name.errors?.required'>English Word is required, 3 to 100 characters</div>
+            <div *ngIf='name.errors?.minlength'>English Word must be at least 3 characters</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="author">Author:</label>
+          <input class="form-control" id="author" name="auth" [(ngModel)]="newTerm.authorName" required minlength="5" maxlength="50"
+            #author="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='author.invalid && (author.dirty || author.touched)' class='alert alert-danger'>
+            <div *ngIf='author.errors?.required'>Author name is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label" for="nonenglishword">NonEnglish Word:</label>
+          <input class="form-control" id="nonenglishword" name="nonenglishword" [(ngModel)]="newTerm.wordNonEnglish" required minlength="5" maxlength="100"
+            #nonenglishword="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='nonenglishword.invalid && (nonenglishword.dirty || nonenglishword.touched)' class='alert alert-danger'>
+            <div *ngIf='nonenglishword.errors?.required'>NonEnglish Term is required, 3 to 100 characters</div>
+            <div *ngIf='nonenglishword.errors?.minlength'>NonEnglish Term must be at least 3 characters</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="fieldofstudy">Field of Study:</label>
+          <input class="form-control" id="fieldofstudy" name="fieldofstudy" [(ngModel)]="newTerm.fieldOfStudy" required minlength="5" maxlength="50"
+            #fieldofstudy="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='fieldofstudy.invalid && (fieldofstudy.dirty || fieldofstudy.touched)' class='alert alert-danger'>
+            <div *ngIf='fieldofstudy.errors?.required'>Field of Study is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label" for="langcode">Language Code:</label>
+          <input class="form-control" id="langcode" name="langcode" [(ngModel)]="newTerm.languageCode" required minlength="5" maxlength="50"
+            #langcode="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='langcode.invalid && (langcode.dirty || langcode.touched)' class='alert alert-danger'>
+            <div *ngIf='langcode.errors?.required'>Language Code is required, 5 to 50 characters</div>
+            <div *ngIf='langcode.errors?.minlength'>Language Code must be at least 5 characters</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div class="form-group">
+          <label class="control-label" for="datecreated">Date Created:</label>
+          <input class="form-control" id="datecreated" name="datecreated"  [(ngModel)]="newTerm.dateCreated" required minlength="5" maxlength="50"
+          #datecreated="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='fieldofstudy.invalid && (fieldofstudy.dirty || fieldofstudy.touched)' class='alert alert-danger'>
+            <div *ngIf='fieldofstudy.errors?.required'>Field of Study is required</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label" for="image">Image:</label>
+          <input class="form-control" id="image" name="image" [(ngModel)]="newTerm.image" required minlength="5" maxlength="50"
+            #image="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='image.invalid && (image.dirty || image.touched)' class='alert alert-danger'>
+            <div *ngIf='image.errors?.required'>Image link is required</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label" for="audio">Audio:</label>
+          <input class="form-control" id="audio" name="audio" [(ngModel)]="newTerm.audio" required minlength="5" maxlength="50"
+            #audio="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='audio.invalid && (audio.dirty || audio.touched)' class='alert alert-danger'>
+            <div *ngIf='audio.errors?.required'>Audio link is required</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label" for="wiki">Wikipedia:</label>
+          <input class="form-control" id="wiki" name="wiki" [(ngModel)]="newTerm.linkWikipedia" required minlength="5" maxlength="50"
+            #wiki="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='wiki.invalid && (wiki.dirty || wiki.touched)' class='alert alert-danger'>
+            <div *ngIf='wiki.errors?.required'>Wikipedia link is required</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label" for="youtube">YouTube:</label>
+          <input class="form-control" id="youtube" name="youtube" [(ngModel)]="newTerm.linkYouTube" required minlength="5" maxlength="50"
+            #youtube="ngModel">
+
+          <!-- Validation error area -->
+          <div *ngIf='youtube.invalid && (youtube.dirty || youtube.touched)' class='alert alert-danger'>
+            <div *ngIf='youtube.errors?.required'>YouTube link is required</div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-8">
+        <div class="form-group">
+          <label class="control-label" for="def">Definition:</label>
+          <textarea class="form-control" id="def" name="def" [(ngModel)]="newTerm.definitions" required minlength="5" maxlength="50"
+            #def="ngModel" ></textarea>
+
+          <!-- Validation error area -->
+          <div *ngIf='def.invalid && (def.dirty || def.touched)' class='alert alert-danger'>
+            <div *ngIf='def.errors?.required'>Definiton is required</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <button class="btn btn-primary" type="submit" [disabled]="!f.form.valid">Save</button>&nbsp;
+        <a routerLink="/terms" class="btn btn-default">Back to list</a>
+      </div>
+      </form>
+    </div>
+  </div>
