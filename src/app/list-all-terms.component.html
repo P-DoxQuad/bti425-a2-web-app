@@ -1,9 +1,17 @@
-<div class="col-md-8">
-  <h3>List of Terms:</h3>
-</div>
+<div class="row">
   <div class="col-md-4">
-    <input class="form-control" (ngModelChange)="getByWord()" type="text" placeholder="Search">
+    <h3>List of Terms:</h3>
   </div>
+</div>
+
+<div class="col-md-4">
+    <a routerLink="/terms/add" class="btn btn-info">Add Term</a>
+</div>
+
+<div class="col-md-4 col-sm-4">
+    <input class="form-control" (ngModelChange)="getByWord()" type="text" placeholder="Search">
+</div>
+
 <div id="terms">
   <table class="table table-striped">
     <thead>
@@ -12,28 +20,21 @@
         <th>Author</th>
         <th>Definition</th>
         <th>Field of Study</th>
-        <th></th>
+        <th>Options</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let p of terms">
         <td>{{ p.wordEnglish }}</td>
         <td>{{ p.authorName }}</td>
-        <td>{{ p.definitions }}</td>
-        <td>{{ p.fieldOfStudy }}</td>
-        <td><div><a routerLink="/details" class="btn btn-info">Detail</a>
-                 <input class="btn btn-danger" type="submit" value="Delete" /></div></td>
+        <td>{{ p.definitions[0].definition }}</td>
+        <td>{{ p.fieldOfStudy | titlecase }}</td>
+        <td>
+          <a routerLink="/term/english/details/{{p._id}}" class="btn btn-sm btn-default">Detail</a>&nbsp;
+          <a routerLink="/term/english/delete/{{p._id}}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
       </tr>
     </tbody>
-
-    <!-- <tbody>
-      <tr *ngFor="let p of terms">
-        <td>{{ p.id }}</td>
-        <td>{{ p.userId }}</td>
-        <td>{{ p.title }}</td>
-        <td>{{ p.body }}</td>
-      </tr>
-    </tbody> -->
   </table>
 </div>
 

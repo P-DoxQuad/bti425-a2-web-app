@@ -1,13 +1,11 @@
 <h3 *ngIf="term.wordExpanded">{{term.wordEnglish}} - {{term.wordExpanded | titlecase}} - {{term.languageCode.toUpperCase()}}
-  <a routerLink="/term/english/edit/{{ term._id }}" class="btn btn-sm btn-default">Edit</a>
 </h3>
 <h3 *ngIf="!term.wordExpanded">{{term.wordEnglish}} - {{term.languageCode.toUpperCase()}}
-  <a routerLink="/term/english/edit/{{ term._id }}" class="btn btn-sm btn-default">Edit</a>
 </h3>
 <h5>By {{term.authorName | titlecase}} - {{term.fieldOfStudy | titlecase}}, {{term.dateCreated | date}}
     | <ng-container *ngIf="term.dateRevised">Revised: {{term.dateRevised | date}}</ng-container>
 </h5>
-
+<div class='alert alert-danger'>ARE YOU SURE YOU WANT TO DELETE?</div>
 <div class="col-md-3">
   <img [src]="term.image" width="200" alt="" class="img-rounded img-responsive absolute-center" *ngIf="term.image">
   <img src="https://via.placeholder.com/200" alt="" class="img-rounded img-responsive absolute-center" *ngIf="!term.image">
@@ -16,13 +14,13 @@
 <div class="col-md-9">
   <div class="dl-horizontal">
     <div *ngIf="term.wordNonEnglish">
-      <strong>NonEnglish:{{term.wordNonEnglish}}</strong>
+      NonEnglish:{{term.wordNonEnglish}}
     </div>
     <div *ngIf="term.linkAuthoritative">
       <strong>Direct URL:</strong> <a href={{term.linkAuthoritative}}> {{term.linkAuthoritative}}</a>
     </div>
     <div *ngIf="term.audio">
-      <strong>Audio:</strong> <a href={{term.audio}}> {{term.audio}}</a>
+      <strong>Audio:</strong> <a href={{term.audio}}>{{term.audio}}</a>
     </div>
     <div *ngIf="term.linkWikipedia">
       <strong>Wikipedia:</strong> <a href={{term.linkWikipedia}}> {{term.linkWikipedia}}</a>
@@ -33,7 +31,7 @@
     <div class="col-md-12">
       <div class="dl-horizontal">
           <ng-container *ngIf="term">
-              <h4>Definitions: <a routerLink="/term/english/edit/definition/{{ term._id }}" class="btn btn-sm btn-default">Edit</a></h4>
+              <h4>Definitions: </h4>
               <ol *ngFor="let p of term.definitions; let i = index" start={{i+1}}>
                   <li >{{ p.definition}}</li>
               </ol>
@@ -47,10 +45,11 @@
 
 
 <form (ngSubmit)='deleteTerm()' #f='ngForm'>
-<div class="col-12" *ngIf="term">
-  <button class="btn btn-danger" type="submit">Delete</button>&nbsp;
-  <a routerLink="/terms" class="btn btn-default">Back to list</a>
-</div>
+  <div class="col-12" *ngIf="term">
+    <button class="btn btn-danger" type="submit">Confirm Deletion!</button>&nbsp;
+    <a routerLink="/terms" class="btn btn-default">Back to list</a>
+  </div>
+</form>
 
 <div *ngIf="!term">
   <p>Requested tem was not found</p>

@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from "@angular/router";
-import { Router } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { NgForm } from '@angular/forms';
 
 import { DataManagerService } from "./data-manager.service";
 import { TermEnglish  } from "./data-class";
+import { from } from 'rxjs';
 
 @Component({
-  selector: 'app-view-term',
-  templateUrl: './view-term.component.html',
-  styleUrls: ['./view-term.component.css']
+  selector: 'app-delete-term',
+  templateUrl: './delete-term.component.html',
+  styleUrls: ['./delete-term.component.css']
 })
-export class ViewTermComponent implements OnInit {
+export class DeleteTermComponent implements OnInit {
 
   // reqres.in web service data
   term: TermEnglish;
@@ -31,7 +31,7 @@ export class ViewTermComponent implements OnInit {
     this.manager.englishGetByID(id).subscribe(response => this.term = response);
   }
 
-  // Form submit button handlers
+  // Form submit button handler
   deleteTerm(): void {
 
     // Send request

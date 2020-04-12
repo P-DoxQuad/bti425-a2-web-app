@@ -8,7 +8,10 @@ import { ListAllTermsComponent } from './list-all-terms.component';
 import { AddTermComponent } from './add-term.component';
 import { ViewTermComponent } from './view-term.component';
 import { EditTermComponent } from './edit-term.component';
+import { EditDefinitionComponent } from './edit-definition.component';
+import { DeleteTermComponent } from './delete-term.component';
 import { NotfoundComponent } from "./notfound.component";
+
 
 
 const routes: Routes = [
@@ -16,9 +19,11 @@ const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'terms', component: ListAllTermsComponent },
-  { path: 'add-new', component: AddTermComponent},
-  { path: 'details', component: ViewTermComponent},
-  { path: 'edit', component: EditTermComponent},
+  { path: 'terms/add', component: AddTermComponent},
+  { path: 'term/english/details/:id', component: ViewTermComponent},
+  { path: 'term/english/edit/:id', component: EditTermComponent},
+  { path: 'term/english/edit/definition/:id', component: EditDefinitionComponent},
+  { path: 'term/english/delete/:id', component: DeleteTermComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: NotfoundComponent }
 ];

@@ -17,7 +17,8 @@ export class DataManagerService {
 
   // Base URL for the web API
   //private url: string = 'https://pam-2020-a2and3webapi.herokuapp.com/api';
-  private url: string = 'http://localhost:8080/api';
+  private url: string = 'https://bti425-a2-web-api.herokuapp.com/api';
+  //private url: string = 'http://localhost:8080/api';
 
   // Options object for POST and PUT requests
   private httpOptions = {
@@ -42,7 +43,8 @@ export class DataManagerService {
   // Add other methods that provide general service to all components in the app
 
   getAllEnglish(): Observable<TermEnglish[]> {
-    return this.http.get<TermEnglish[]>(`${this.url}/terms/english`)
+    console.log("GET:" + `${this.url}/terms/english`);
+    return this.http.get<TermEnglish[]>(`${this.url}/terms/english`);
   }
 
   /*getComments(): Observable<Comment[]> {
@@ -62,13 +64,19 @@ export class DataManagerService {
   }*/
 
   // Get one
-  /*reqresUserGetById(id: number): Observable<ReqresUserSinglePackage> {
-    return this.http.get<ReqresUserSinglePackage>(`${this.urlReqres}/${id}`);
-  }*/
+  englishGetByID(id: string): Observable<TermEnglish> {
+    console.log("GetByID=" + `${this.url}/term/english/details/${id}`);
+    return this.http.get<TermEnglish>(`${this.url}/term/english/details/${id}`);
+  }
+
+  // Get by name
+  englishGetByName(text: string): Observable<TermEnglish> {
+    return this.http.get<TermEnglish>(`${this.url}/terms/english/${text}`);
+  }
 
   // Add new
-  TermAdd(newItem: TermEnglish): Observable<TermEnglish> {
-    return this.http.post<TermEnglish>(this.url, newItem, this.httpOptions)
+  englishTermAdd(newItem: TermEnglish): Observable<TermEnglish> {
+    return this.http.post<TermEnglish>(`${this.url}/term/english/add`, newItem, this.httpOptions)
       .pipe(
         tap((newItem: TermEnglish) => console.log(`Added Term ${newItem.wordEnglish}`)),
         catchError(this.handleError<TermEnglish>('Term add'))
@@ -76,22 +84,33 @@ export class DataManagerService {
   }
 
   // Edit existing
-  /*reqresUserEdit(id: number, newItem: ReqresUserCreate): Observable<ReqresUserCreateResponse> {
-    return this.http.put<ReqresUserCreateResponse>(`${this.urlReqres}/${id}`, newItem, this.httpOptions)
+  englishTermEdit(newItem: TermEnglish): Observable<TermEnglish> {
+    console.log("EditByID=" + `${this.url}/term/english/edit/${newItem._id}`);
+    console.log(`Added \n Word: ${newItem.wordEnglish}
+              \n NonEnglish Word: ${newItem.wordNonEnglish}
+              \n Expanded Word: ${newItem.wordExpanded}
+              \n Image: ${newItem.image}
+              \n Audio: ${newItem.audio}
+              \n URL: ${newItem.linkAuthoritative}
+              \n Wiki: ${newItem.linkWikipedia}
+              \n Youtube: ${newItem.linkYouTube}
+              \n Author: ${newItem.authorName}
+              \n Definition: ${newItem.definitions[0].definition}`);
+    return this.http.put<TermEnglish>(`${this.url}/term/english/edit/${newItem._id}`, newItem, this.httpOptions)
       .pipe(
-        tap((newItem: ReqresUserCreateResponse) => console.log(`Edited item ${newItem.name}`)),
-        catchError(this.handleError<ReqresUserCreateResponse>('User edit'))
+        tap((newItem: TermEnglish) => console.log(`Edited item ${newItem.wordEnglish}`)),
+        catchError(this.handleError<TermEnglish>('Term edit'))
       );
-  }*/
+  }
 
   // Delete item
-  /*reqresUserDelete(id: number) {
-    return this.http.delete(`${this.urlReqres}/${id}`)
+  englishTermDelete(id: string) {
+    return this.http.delete(`${this.url}/term/english/delete/${id}`)
       .pipe(
         tap(() => console.log(`Deleted item with id ${id}`)),
-        catchError(this.handleError('User delete'))
+        catchError(this.handleError('Term delete'))
       );
-  }*/
+  }
 
 
 }

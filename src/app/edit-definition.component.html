@@ -1,0 +1,35 @@
+<div class="containter">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Edit Definition of "{{changeDef.wordEnglish}}"</h3>
+      <p>Enter data, and click/tap the Save button</p>
+      <form (ngSubmit)='editDef()' #f='ngForm'>
+        <div class="form-group">
+          <h4>Definitions:</h4>
+          <table>
+            <tbody>
+              <tr *ngFor="let p of changeDef.definitions; let i = index">
+                <td><h4>{{i+1}}:</h4></td>
+                <td><textarea class="form-control" id="def{{i+1}}" name="def{{i+1}}" [(ngModel)]="p.definition" required minlength="5" maxlength="500"
+                    rows="8" cols="150" #def{{i+1}}="ngModel" ></textarea></td>
+              </tr>
+            </tbody>
+          </table>
+          <button class="btn btn-warning" type="button" (click)="showarea=true">Add Field</button>
+          <ng-container *ngIf="showarea">
+          <textarea class="form-control" id="newdef" name="newdef" placeholder="" [(ngModel)]="newDef" required minlength="5" maxlength="500"
+                    rows="8" cols="150" #newdef="ngModel" ></textarea>
+          </ng-container>
+
+        </div>
+
+      <div class="col-md-8">
+        <!-- <button class="btn btn-primary" type="submit" [disabled]="!f.form.valid">Save</button>&nbsp; -->
+        <button class="btn btn-primary" type="submit" >Save</button>&nbsp;
+        <a routerLink="/term/english/details/{{ changeDef._id }}" class="btn btn-default">Go Back</a>
+      </div>
+      </form>
+
+
+    </div>
+  </div>
