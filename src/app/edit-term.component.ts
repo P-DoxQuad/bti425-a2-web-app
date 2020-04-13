@@ -50,7 +50,7 @@ ngOnInit() {
   this.manager.englishGetByID(id).subscribe(response => {
     this.term = response;
     this.changeTerm._id = this.term._id;
-    this.changeTerm.wordEnglish = this.term.wordNonEnglish;
+    this.changeTerm.wordEnglish = this.term.wordEnglish;
     this.changeTerm.wordNonEnglish = this.term.wordNonEnglish;
     this.changeTerm.wordExpanded = this.term.wordExpanded;
     this.changeTerm.languageCode = this.term.languageCode;

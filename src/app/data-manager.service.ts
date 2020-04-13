@@ -17,8 +17,8 @@ export class DataManagerService {
 
   // Base URL for the web API
   //private url: string = 'https://pam-2020-a2and3webapi.herokuapp.com/api';
-  private url: string = 'https://bti425-a2-web-api.herokuapp.com/api';
-  //private url: string = 'http://localhost:8080/api';
+  //private url: string = 'https://bti425-a2-web-api.herokuapp.com/api';
+  private url: string = 'http://localhost:8080/api';
 
   // Options object for POST and PUT requests
   private httpOptions = {
