@@ -7,7 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  Birthday = new Date("1991-06-20");
+  ageDif = Date.now() - this.Birthday.getTime();
+  ageDate = new Date(this.ageDif); // miliseconds from epoch
+  age;
+
+  constructor() {
+    this.age = Math.abs(this.ageDate.getUTCFullYear() - 1970);
+
+  }
 
   ngOnInit(): void {
   }
