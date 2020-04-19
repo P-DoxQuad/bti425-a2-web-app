@@ -4,7 +4,7 @@ import { Observable, of } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
 
 // Import data model classes, for example...
-import { TermEnglish } from "./data-class";
+import { TermEnglish, AddTermEnglish, Definition, AddDefinition, LikeIncrease } from "./data-class";
 
 
 @Injectable({
@@ -17,8 +17,8 @@ export class DataManagerService {
 
   // Base URL for the web API
   //private url: string = 'https://pam-2020-a2and3webapi.herokuapp.com/api';
-  //private url: string = 'https://bti425-a2-web-api.herokuapp.com/api';
-  private url: string = 'http://localhost:8080/api';
+  private url: string = 'https://bti425-a2-web-api.herokuapp.com/api';
+  //private url: string = 'http://localhost:8080/api';
 
   // Options object for POST and PUT requests
   private httpOptions = {
@@ -71,12 +71,14 @@ export class DataManagerService {
 
   // Get by name
   englishGetByName(text: string): Observable<TermEnglish> {
+    console.log("Search For = " + `${text}`);
     return this.http.get<TermEnglish>(`${this.url}/terms/english/${text}`);
   }
 
   // Add new
-  englishTermAdd(newItem: TermEnglish): Observable<TermEnglish> {
-    return this.http.post<TermEnglish>(`${this.url}/term/english/add`, newItem, this.httpOptions)
+  englishTermAdd(newItem: AddTermEnglish): Observable<TermEnglish> {
+    console.log("Body: ", newItem);
+    return this.http.post<TermEnglish>(`${this.url}/term/english/`, newItem, this.httpOptions)
       .pipe(
         tap((newItem: TermEnglish) => console.log(`Added Term ${newItem.wordEnglish}`)),
         catchError(this.handleError<TermEnglish>('Term add'))
@@ -84,22 +86,27 @@ export class DataManagerService {
   }
 
   // Edit existing
-  englishTermEdit(newItem: TermEnglish): Observable<TermEnglish> {
-    console.log("EditByID=" + `${this.url}/term/english/edit/${newItem._id}`);
-    console.log(`Added \n Word: ${newItem.wordEnglish}
-              \n NonEnglish Word: ${newItem.wordNonEnglish}
-              \n Expanded Word: ${newItem.wordExpanded}
-              \n Image: ${newItem.image}
-              \n Audio: ${newItem.audio}
-              \n URL: ${newItem.linkAuthoritative}
-              \n Wiki: ${newItem.linkWikipedia}
-              \n Youtube: ${newItem.linkYouTube}
-              \n Author: ${newItem.authorName}
-              \n Definition: ${newItem.definitions[0].definition}`);
-    return this.http.put<TermEnglish>(`${this.url}/term/english/edit/${newItem._id}`, newItem, this.httpOptions)
+  englishDefAdd(id: string, newItem: AddDefinition): Observable<Definition> {
+    console.log("EditByID=" + `${this.url}/term/english/${id}/add-definition`);
+    console.log(`Added \n Word: ${newItem.authorName}
+              \n NonEnglish Word: ${newItem.dateCreated}
+              \n Expanded Word: ${newItem.definition}
+              \n Image: ${newItem.quality}
+              \n Audio: ${newItem.likes}`);
+    return this.http.put<Definition>(`${this.url}/term/english/${id}/add-definition`, newItem, this.httpOptions)
       .pipe(
-        tap((newItem: TermEnglish) => console.log(`Edited item ${newItem.wordEnglish}`)),
-        catchError(this.handleError<TermEnglish>('Term edit'))
+        tap((newItem: Definition) => console.log(`Added new Definition ${newItem.definition}`)),
+        catchError(this.handleError<Definition>('Term edit'))
+      );
+  }
+
+  likeDefinition(id: string, newItem: LikeIncrease): Observable<Definition> {
+    console.log("EditByID=" + `${this.url}/term/english/${id}/up-likecount-def`);
+    console.log(`Added \n Like: ${newItem.likes}`);
+    return this.http.put<Definition>(`${this.url}/term/english/${id}/up-likecount-def`, newItem, this.httpOptions)
+      .pipe(
+        tap((newItem: Definition) => console.log(`Added Like ${newItem.likes}`)),
+        catchError(this.handleError<Definition>('Add Like'))
       );
   }
 

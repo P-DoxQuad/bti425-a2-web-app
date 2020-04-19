@@ -1,35 +1,66 @@
 <div class="containter">
   <div class="row">
     <div class="col-md-12">
-      <h3>Edit Definition of "{{changeDef.wordEnglish}}"</h3>
-      <p>Enter data, and click/tap the Save button</p>
-      <form (ngSubmit)='editDef()' #f='ngForm'>
-        <div class="form-group">
-          <h4>Definitions:</h4>
-          <table>
-            <tbody>
-              <tr *ngFor="let p of changeDef.definitions; let i = index">
-                <td><h4>{{i+1}}:</h4></td>
-                <td><textarea class="form-control" id="def{{i+1}}" name="def{{i+1}}" [(ngModel)]="p.definition" required minlength="5" maxlength="500"
-                    rows="8" cols="150" #def{{i+1}}="ngModel" ></textarea></td>
-              </tr>
-            </tbody>
-          </table>
-          <button class="btn btn-warning" type="button" (click)="showarea=true">Add Field</button>
-          <ng-container *ngIf="showarea">
-          <textarea class="form-control" id="newdef" name="newdef" placeholder="" [(ngModel)]="newDef" required minlength="5" maxlength="500"
-                    rows="8" cols="150" #newdef="ngModel" ></textarea>
-          </ng-container>
+      <div *ngIf="term.wordExpanded">
+        <h3>Add Another Definition to {{term.wordEnglish}} - {{term.wordExpanded}}</h3>
+      </div>
+      <div *ngIf="!term.wordExpanded">
+        <h3>Add Another Definition to {{term.wordEnglish}}</h3>
+      </div>
+      <br />
+    </div>
+    <div class="col-md-12">
+      <h4>New Definition: Enter data, and click/tap the Save button</h4>
+    </div>
+      <form (ngSubmit)='addDef()' #f='ngForm'>
+        <div class="col-md-12">
+          <div class="form-group">
+              <label class="control-label" for="author">*Author Name:</label>
+              <input class="form-control" id="author" name="auth" placeholder="Enter Your Name..." [(ngModel)]="newDef.authorName" required minlength="5" maxlength="100"
+                #author="ngModel">
 
+              <!-- Validation error area -->
+              <div *ngIf='author.invalid && (author.dirty || author.touched)' class='alert alert-danger'>
+                <div *ngIf='author.errors?.required'>Author name is required</div>
+              </div>
+          </div>
+        </div>
+        <div class="col-md-12">
+          <div class="form-group">
+            <label class="control-label" for="newdef">Definition:</label>
+            <textarea class="form-control" id="newdef" name="newdef" [(ngModel)]="newDef.definition" required minlength="5" maxlength="500"
+                rows="5" #newdef="ngModel" ></textarea>
+          </div>
         </div>
 
-      <div class="col-md-8">
-        <!-- <button class="btn btn-primary" type="submit" [disabled]="!f.form.valid">Save</button>&nbsp; -->
-        <button class="btn btn-primary" type="submit" >Save</button>&nbsp;
-        <a routerLink="/term/english/details/{{ changeDef._id }}" class="btn btn-default">Go Back</a>
-      </div>
+        <div class="col-md-12">
+          <!-- <button class="btn btn-primary" type="submit" [disabled]="!f.form.valid">Save</button>&nbsp; -->
+          <button class="btn btn-primary" type="submit" >Save</button>&nbsp;
+          <a routerLink="/term/english/details/{{ term._id }}" class="btn btn-default">Go Back</a>
+        </div>
+        <br />
+        <hr />
+        <br />
+        <div class="col-md-12">
+          <div class="form-group">
+            <h4>Existing Definitions:</h4>
+            <ol *ngFor="let p of term.definitions; let i = index" start={{i+1}}>
+              <li >
+                <h5>Author: {{p.authorName | titlecase}} - on {{term.dateCreated | date}}
+                </h5>
+                {{ p.definition}}
+                <br />
+                <button type="button" class="btn btn-sm btn-success">Like {{p.likes}}</button>
+              </li>
+            </ol>
+          </div>
+        </div>
+
+          <!-- <button class="btn btn-warning" type="button" (click)="showarea=true">Add Field</button>
+          <ng-container *ngIf="showarea">
+          <textarea class="form-control" id="newdef" name="newdef" placeholder="" [(ngModel)]="term" required minlength="5" maxlength="500"
+                    rows="8" cols="150" #newdef="ngModel" ></textarea>
+          </ng-container> -->
+
+
       </form>
-
-
-    </div>
-  </div>

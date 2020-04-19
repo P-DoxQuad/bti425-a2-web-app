@@ -13,7 +13,7 @@ import { AddTermComponent } from './add-term.component';
 import { ViewTermComponent } from './view-term.component';
 import { EditTermComponent } from './edit-term.component';
 import { DeleteTermComponent } from './delete-term.component';
-import { EditDefinitionComponent } from './edit-definition.component';
+import { AddDefinitionComponent } from './edit-definition.component';
 import { NotfoundComponent } from './notfound.component';
 import { NavMainComponent } from './nav-main.component';
 
@@ -33,7 +33,7 @@ import { NavMainComponent } from './nav-main.component';
     ViewTermComponent,
     EditTermComponent,
     DeleteTermComponent,
-    EditDefinitionComponent,
+    AddDefinitionComponent,
     NotfoundComponent,
     NavMainComponent,
 

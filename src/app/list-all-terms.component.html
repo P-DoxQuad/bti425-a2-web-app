@@ -9,7 +9,7 @@
 </div>
 
 <div class="col-md-4 col-sm-4">
-    <input class="form-control" (ngModelChange)="getByWord()" type="text" placeholder="Search">
+    <input class="form-control" id="search" name="search" (ngModelChange)="getByWord()" [(ngModel)]="search" placeholder="Search">
 </div>
 
 <div id="terms">
@@ -23,8 +23,20 @@
         <th>Options</th>
       </tr>
     </thead>
-    <tbody>
-      <tr *ngFor="let p of terms">
+    <tbody *ngIf="terms ">
+      <tr  *ngFor="let p of terms">
+        <td>{{ p.wordEnglish }}</td>
+        <td>{{ p.authorName }}</td>
+        <td>{{ p.definitions[0].definition }}</td>
+        <td>{{ p.fieldOfStudy | titlecase }}</td>
+        <td>
+          <a routerLink="/term/english/details/{{p._id}}" class="btn btn-sm btn-default">Detail</a>&nbsp;
+          <a routerLink="/term/english/delete/{{p._id}}" class="btn btn-sm btn-danger">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="term">
+      <tr  *ngFor="let p of term">
         <td>{{ p.wordEnglish }}</td>
         <td>{{ p.authorName }}</td>
         <td>{{ p.definitions[0].definition }}</td>

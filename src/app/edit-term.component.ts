@@ -103,7 +103,7 @@ editTerm(): void {
 
   // Send request
   // this.manager.englishTermEdit(this.term._id, this.changeTerm).subscribe(t => this.changeTerm = t);
-  this.manager.englishTermEdit(this.changeTerm).subscribe(t => this.changeTerm = t);
+  //this.manager.englishTermEdit(this.changeTerm).subscribe(t => this.changeTerm = t);
 
   // Here we can do whatever tasks we need to do
   // For now, we'll just dump content to the console
@@ -116,7 +116,7 @@ editTerm(): void {
   //             \n Author: ${this.changeTerm.authorName}
   //             \n Definition: ${this.changeTerm.definitions[0].definition}`);
   // In a real app, we must redirect to fulfill the PRG pattern
-  this.router.navigate(['/terms']);
+  //this.router.navigate(['/terms']);
 }
 
 }

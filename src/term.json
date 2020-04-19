@@ -1,0 +1,28 @@
+{
+  "wordEnglish": "AAAAAAAZZZZZ",
+  "wordNonEnglish": "BBBBBB",
+  "wordExpanded": "CCCCCC",
+  "languageCode": "en",
+  "image": "",
+  "imageType": "",
+  "audio": "",
+  "audioType": "",
+  "linkAuthoritative": "",
+  "linkWikipedia": "https://en.wikipedia.org",
+  "linkYouTube": "",
+  "authorName": "Michael Dzura",
+  "fieldOfStudy": "Software Development",
+  "helpYes": 0,
+  "helpNo": 0,
+  "definitions": [
+      {
+          "authorName": "Michael Dzura",
+          "definition": "This is only a test! Do not panic!",
+          "quality": 0,
+          "likes": 0,
+          "dateCreated": "2020-03-26T11:43:30.044Z"
+      }
+  ],
+  "dateCreated": "2020-03-26T11:43:30.044Z",
+  "dateRevised": "2020-03-26T11:43:30.044Z"
+}

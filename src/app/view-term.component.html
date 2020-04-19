@@ -1,8 +1,8 @@
 <h3 *ngIf="term.wordExpanded">{{term.wordEnglish}} - {{term.wordExpanded | titlecase}} - {{term.languageCode.toUpperCase()}}
-  <a routerLink="/term/english/edit/{{ term._id }}" class="btn btn-sm btn-default">Edit</a>
+  <!-- <a routerLink="/term/english/edit/{{ term._id }}" class="btn btn-sm btn-default">Edit</a> -->
 </h3>
 <h3 *ngIf="!term.wordExpanded">{{term.wordEnglish}} - {{term.languageCode.toUpperCase()}}
-  <a routerLink="/term/english/edit/{{ term._id }}" class="btn btn-sm btn-default">Edit</a>
+  <!-- <a routerLink="/term/english/edit/{{ term._id }}" class="btn btn-sm btn-default">Edit</a> -->
 </h3>
 <h5>By {{term.authorName | titlecase}} - {{term.fieldOfStudy | titlecase}}, {{term.dateCreated | date}}
     | <ng-container *ngIf="term.dateRevised">Revised: {{term.dateRevised | date}}</ng-container>
@@ -35,7 +35,10 @@
           <ng-container *ngIf="term">
               <h4>Definitions: <a routerLink="/term/english/edit/definition/{{ term._id }}" class="btn btn-sm btn-default">Edit</a></h4>
               <ol *ngFor="let p of term.definitions; let i = index" start={{i+1}}>
-                  <li >{{ p.definition}}</li>
+                  <li >{{ p.definition}}
+                    <br />
+                    <button type="button" (click)="increaseLink()" class="btn btn-sm btn-success">Like {{p.likes}}</button>
+                  </li>
               </ol>
           </ng-container>
       </div>
@@ -47,10 +50,14 @@
 
 
 <form (ngSubmit)='deleteTerm()' #f='ngForm'>
+<br />
+
 <div class="col-12" *ngIf="term">
-  <button class="btn btn-danger" type="submit">Delete</button>&nbsp;
-  <a routerLink="/terms" class="btn btn-default">Back to list</a>
+  <p><a routerLink="/term/english/delete/{{term._id}}" class="btn btn-danger">Delete</a>
+    &nbsp;
+  <a routerLink="/terms" class="btn btn-default">Back to list</a></p>
 </div>
+
 
 <div *ngIf="!term">
   <p>Requested tem was not found</p>

@@ -5,7 +5,8 @@ import { NgForm } from '@angular/forms';
 import { DataManagerService } from "./data-manager.service";
 //import { Observable } from "rxjs";
 import { TermEnglish, Definition } from "./data-class";
-import { from } from 'rxjs';
+import { from, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 
 @Component({
@@ -20,6 +21,8 @@ export class ListAllTermsComponent implements OnInit {
   terms: TermEnglish[];
   term: TermEnglish;
 
+  search: string;
+
 
   ngOnInit() {
 
@@ -27,21 +30,20 @@ export class ListAllTermsComponent implements OnInit {
 
     // Fetch posts...
     this.manager.getAllEnglish().subscribe(response => this.terms = response);
-
-
-
-    // Fetch comments...
-    //this.manager.getComments().subscribe(response => this.comments = response.slice(0, 10));
-
-    // Fetch users...
-    //this.manager.getUsers().subscribe(response => this.users = response.slice(0, 10));
   }
   // Form submit button handler
 
   getByWord(): void {
-    let text = this.route.snapshot.params['word'];
+    //let text = this.route.snapshot.params['text'];
+    //let text =
 
-    //this.manager.englishGetByName(text).subscribe(response => this.terms = response.wordEnglish);
+    if (this.search.length >= 2 && this.search.length <= 8) {
+      delete(this.terms);
+      this.manager.englishGetByName(this.search).subscribe(response => this.term = response);
+    } else if (this.search.length == 1) {
+      delete(this.term);
+      this.manager.getAllEnglish().subscribe(response => this.terms = response);
+    }
   }
 
   deleteTerm(f: NgForm): void {
